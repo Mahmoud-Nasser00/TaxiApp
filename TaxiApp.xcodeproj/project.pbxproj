@@ -13,7 +13,12 @@
 		6F5F03DD26238751007027D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03DB26238751007027D9 /* Main.storyboard */; };
 		6F5F03DF26238755007027D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03DE26238755007027D9 /* Assets.xcassets */; };
 		6F5F03E226238755007027D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03E026238755007027D9 /* LaunchScreen.storyboard */; };
-		6F5F03EC26247E52007027D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03EB26247E52007027D9 /* GoogleService-Info.plist */; };
+		6F5F040D26249E3D007027D9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F040C26249E3D007027D9 /* Constants.swift */; };
+		6F5F041126249F73007027D9 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F041026249F73007027D9 /* FirebaseManager.swift */; };
+		6F5F04142624A0EA007027D9 /* SourceLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F04132624A0EA007027D9 /* SourceLocation.swift */; };
+		6F5F04182624A811007027D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F04172624A811007027D9 /* GoogleService-Info.plist */; };
+		6F5F041B2624C4CA007027D9 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F041A2624C4CA007027D9 /* UIViewExt.swift */; };
+		6F5F04342624E5E5007027D9 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F04332624E5E5007027D9 /* Driver.swift */; };
 		95C062F307CABEA9B32BE950 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAD6D043AC7B0AE53E645A7 /* Pods_TaxiApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +33,12 @@
 		6F5F03DE26238755007027D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F5F03E126238755007027D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F5F03E326238755007027D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F5F03EB26247E52007027D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6F5F040C26249E3D007027D9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		6F5F041026249F73007027D9 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		6F5F04132624A0EA007027D9 /* SourceLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SourceLocation.swift; sourceTree = "<group>"; };
+		6F5F04172624A811007027D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6F5F041A2624C4CA007027D9 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		6F5F04332624E5E5007027D9 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		8373D72D184FF575E73EC881 /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,16 +75,53 @@
 		6F5F03D426238750007027D9 /* TaxiApp */ = {
 			isa = PBXGroup;
 			children = (
-				6F5F03D526238750007027D9 /* AppDelegate.swift */,
-				6F5F03D726238750007027D9 /* SceneDelegate.swift */,
+				6F5F040B26249E21007027D9 /* App Delegates */,
 				6F5F03D926238750007027D9 /* ViewController.swift */,
 				6F5F03DB26238751007027D9 /* Main.storyboard */,
 				6F5F03DE26238755007027D9 /* Assets.xcassets */,
 				6F5F03E026238755007027D9 /* LaunchScreen.storyboard */,
 				6F5F03E326238755007027D9 /* Info.plist */,
-				6F5F03EB26247E52007027D9 /* GoogleService-Info.plist */,
+				6F5F04172624A811007027D9 /* GoogleService-Info.plist */,
+				6F5F040C26249E3D007027D9 /* Constants.swift */,
+				6F5F04312624DD9C007027D9 /* Model */,
+				6F5F04302624DD88007027D9 /* Managers */,
+				6F5F042F2624DD5F007027D9 /* Extensions */,
 			);
 			path = TaxiApp;
+			sourceTree = "<group>";
+		};
+		6F5F040B26249E21007027D9 /* App Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F03D526238750007027D9 /* AppDelegate.swift */,
+				6F5F03D726238750007027D9 /* SceneDelegate.swift */,
+			);
+			path = "App Delegates";
+			sourceTree = "<group>";
+		};
+		6F5F042F2624DD5F007027D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F041A2624C4CA007027D9 /* UIViewExt.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6F5F04302624DD88007027D9 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F041026249F73007027D9 /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		6F5F04312624DD9C007027D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F04132624A0EA007027D9 /* SourceLocation.swift */,
+				6F5F04332624E5E5007027D9 /* Driver.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8ADF0E65D87145AE5ADD4868 /* Pods */ = {
@@ -106,6 +153,7 @@
 				6F5F03CF26238750007027D9 /* Frameworks */,
 				6F5F03D026238750007027D9 /* Resources */,
 				4B02411E9BDB62AA6B583AF6 /* [CP] Copy Pods Resources */,
+				B7276E2C184929113C6FD590 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,7 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5F03E226238755007027D9 /* LaunchScreen.storyboard in Resources */,
-				6F5F03EC26247E52007027D9 /* GoogleService-Info.plist in Resources */,
+				6F5F04182624A811007027D9 /* GoogleService-Info.plist in Resources */,
 				6F5F03DF26238755007027D9 /* Assets.xcassets in Resources */,
 				6F5F03DD26238751007027D9 /* Main.storyboard in Resources */,
 			);
@@ -178,6 +226,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7276E2C184929113C6FD590 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TaxiApp/Pods-TaxiApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DCB60E45BC2A3741AF0CA9C4 /* [CP] Check Pods Manifest.lock */ = {
@@ -209,9 +274,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F5F041B2624C4CA007027D9 /* UIViewExt.swift in Sources */,
 				6F5F03DA26238750007027D9 /* ViewController.swift in Sources */,
 				6F5F03D626238750007027D9 /* AppDelegate.swift in Sources */,
+				6F5F04342624E5E5007027D9 /* Driver.swift in Sources */,
+				6F5F041126249F73007027D9 /* FirebaseManager.swift in Sources */,
+				6F5F04142624A0EA007027D9 /* SourceLocation.swift in Sources */,
 				6F5F03D826238750007027D9 /* SceneDelegate.swift in Sources */,
+				6F5F040D26249E3D007027D9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
