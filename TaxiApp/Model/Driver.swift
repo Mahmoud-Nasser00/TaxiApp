@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-struct Driver: Codable {
+struct Driver: Codable , Equatable {
     
     let name:String
     let longitude:Double

@@ -72,7 +72,7 @@ class ViewController: UIViewController {
     private var searchedLocations:[SourceLocation] = []
     private var destinations = [GMSPlace]()
     
-    private var isDestinationSearchActive:Bool = false
+    private var isDestinationTFActive:Bool = false
     private var isSourceLocationSearchActive:Bool = false
     
     private var locationsToShow = [SourceLocation]()
@@ -143,22 +143,11 @@ class ViewController: UIViewController {
         firebaseManager.getDriverDocs { [weak self] (drivers, error) in
             guard let self = self ,drivers.count != 0 , error == nil else {return}
             self.drivers = drivers
+            print("hello\(drivers)")
         }
     }
     
-    func getClosestDriver(drivers:[Driver],closestToLocation location:CLLocation) -> Driver? {
-        if let closestDriver = drivers.min(by: {
-            location.distance(from: $0.comparableCoordinate) < location.distance(from: $1.comparableCoordinate)
-        }) {
-            print("closest Driver: \(closestDriver), distance: \(location.distance(from: closestDriver.comparableCoordinate))")
-            return closestDriver
-        } else {
-            print("coordinates is empty")
-            return nil
-        }
-    }
-    
-    //not used
+    //this function not used
     func getClosestLocation(locations: [CLLocation], closestToLocation location: CLLocation) -> CLLocation? {
         
         if let closestLocation = locations.min(by: { location.distance(from: $0) < location.distance(from: $1) }) {
@@ -171,7 +160,6 @@ class ViewController: UIViewController {
     }
 
     /// places autocomplete
-    //not used
     private func setupPlacesTableView(){
         placesTableViewDataSource = GMSAutocompleteTableDataSource()
         placesTableViewDataSource.delegate = self
@@ -189,9 +177,6 @@ class ViewController: UIViewController {
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
               CLLocationManager.authorizationStatus() == .authorizedAlways) {
             currentLoc = locationManager.location!
-            let _ = CLLocationCoordinate2D(latitude: currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
-            print("lat",currentLoc.coordinate.latitude)
-            print("long",currentLoc.coordinate.longitude)
             filter.locationBias = GMSPlaceRectangularLocationOption(currentLoc.coordinate, currentLoc.coordinate)
             placesTableViewDataSource.autocompleteFilter = filter
         }
@@ -200,7 +185,8 @@ class ViewController: UIViewController {
         locationsTV.dataSource = placesTableViewDataSource
     }
     
-    // get places near to current location
+    // get places near to current location by places api
+    //not used
     private func listLikelyPlaces() {
         destinations.removeAll()
 
@@ -269,11 +255,18 @@ class ViewController: UIViewController {
             showAlert(title: "Sorry!", message: "Please grant location permission from settings ")
             return
         }
-        guard let nearestDriver = getClosestDriver(drivers: drivers, closestToLocation: location) else {
+        
+        let nearestDrivers = firebaseManager.getClosestDrivers(drivers: drivers, closestToLocation: location)
+        
+        print("nearest Drivers:- ",nearestDrivers)
+        
+        guard nearestDrivers.count > 0 else {
             showAlert(title: "Oops..sorry!", message: "there is no drivers near you right now, please try again later")
             return
         }
-        showAlert(title: "Got It!", message: "there is a driver near you .. \(nearestDriver)")
+        
+
+        showAlert(title: "Got It!", message: "there is one or more driver near you .. \(nearestDrivers[0].name) , \(nearestDrivers[1].name), \(nearestDrivers[2].name)")
     }
     
     // not used
@@ -307,15 +300,15 @@ extension ViewController :UITextFieldDelegate {
         locationsTV.isHidden = false
         
         if textField == destinationTF {
-            isDestinationSearchActive = true
+            isDestinationTFActive = true
             isSourceLocationSearchActive = false
-            showAlert(title: "sorry.. this won't work", message: "i don't have billing account for this api so places api can get nearest places to my location")
-//            setupPlacesTableView()
+            setupPlacesTableView()
         }
         
         if textField == locationTF {
-            isDestinationSearchActive = false
+            isDestinationTFActive = false
             isSourceLocationSearchActive = true
+            locationsToShow = sourceLocations
             locationsTV.delegate = self
             locationsTV.dataSource = self
         }
@@ -339,12 +332,12 @@ extension ViewController : UITableViewDelegate {
 extension ViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locationsToShow.count
+        return isDestinationTFActive ? destinations.count: locationsToShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell",for: indexPath)
-        if isDestinationSearchActive {
+        if isDestinationTFActive {
             cell.textLabel?.text = destinations[indexPath.row].name
         } else {
             cell.textLabel?.text = locationsToShow[indexPath.row].name
