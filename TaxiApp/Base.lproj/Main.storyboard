@@ -43,6 +43,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="sourceLocationTFEditingChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="juq-gi-pnS"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o80-W7-uvf">
                                         <rect key="frame" x="20" y="110" width="345.5" height="40"/>

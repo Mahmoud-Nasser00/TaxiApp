@@ -66,13 +66,16 @@ class ViewController: UIViewController {
         }
     }
     
-    private var locations = [SourceLocation]()
+    private var sourceLocations = [SourceLocation]()
     private var drivers = [Driver]()
     
     private var searchedLocations:[SourceLocation] = []
-    private var searchedDestinations = [GMSPlace]()
+    private var destinations = [GMSPlace]()
     
     private var isDestinationSearchActive:Bool = false
+    private var isSourceLocationSearchActive:Bool = false
+    
+    private var locationsToShow = [SourceLocation]()
     
     //MARK:- App Life Cycle
     
@@ -130,7 +133,8 @@ class ViewController: UIViewController {
     private func getSourceLocations(){
         firebaseManager.getLocationsDocs { [weak self] (locations, error) in
             guard let self = self ,locations.count != 0 , error == nil else {return}
-            self.locations = locations
+            self.sourceLocations = locations
+            self.locationsToShow = self.sourceLocations
             self.locationsTV.reloadData()
         }
     }
@@ -198,7 +202,7 @@ class ViewController: UIViewController {
     
     // get places near to current location
     private func listLikelyPlaces() {
-        searchedDestinations.removeAll()
+        destinations.removeAll()
 
       let placeFields: GMSPlaceField = [.name, .coordinate]
         GMSPlacesClient.shared().findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { (placeLikelihoods, error) in
@@ -215,7 +219,7 @@ class ViewController: UIViewController {
         for likelihood in placeLikelihoods {
           let place = likelihood.place
             print(place)
-          self.searchedDestinations.append(place)
+          self.destinations.append(place)
         }
       }
     }
@@ -227,6 +231,11 @@ class ViewController: UIViewController {
         present(alert, animated: true)
     }
    
+    private func filterSourceLocations(searchedText:String, locations:[SourceLocation])->[SourceLocation]{
+        locations.filter {
+            $0.name.localizedCaseInsensitiveContains(searchedText)
+        }
+    }
     
     //MARK:- IBActions
     
@@ -241,6 +250,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sourceLocationTFEditingChanged(_ sender: UITextField) {
+        if sender.text?.count == 0 || sender.text == nil {
+            locationsToShow = sourceLocations
+        } else {
+            locationsToShow = filterSourceLocations(searchedText: sender.text!, locations: sourceLocations)
+        }
+        
+        locationsTV.reloadData()
     }
     
     @IBAction func destinationTFEditingChanged(_ sender: UITextField) {
@@ -292,14 +308,19 @@ extension ViewController :UITextFieldDelegate {
         
         if textField == destinationTF {
             isDestinationSearchActive = true
-            setupPlacesTableView()
-            locationsTV.reloadData()
+            isSourceLocationSearchActive = false
+            showAlert(title: "sorry.. this won't work", message: "i don't have billing account for this api so places api can get nearest places to my location")
+//            setupPlacesTableView()
         }
         
         if textField == locationTF {
             isDestinationSearchActive = false
-            locationsTV.reloadData()
+            isSourceLocationSearchActive = true
+            locationsTV.delegate = self
+            locationsTV.dataSource = self
         }
+        
+        locationsTV.reloadData()
     }
     
 }
@@ -307,7 +328,7 @@ extension ViewController :UITextFieldDelegate {
 extension ViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedLocation = locations[indexPath.row]
+        let selectedLocation = locationsToShow[indexPath.row]
         updateMapView(with: selectedLocation.coordinate)
         self.selectedSourceLocation = selectedLocation
         tableView.deselectRow(at: indexPath, animated: true)
@@ -318,15 +339,15 @@ extension ViewController : UITableViewDelegate {
 extension ViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isDestinationSearchActive ? searchedDestinations.count : locations.count
+        return locationsToShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell",for: indexPath)
         if isDestinationSearchActive {
-            cell.textLabel?.text = searchedDestinations[indexPath.row].name
+            cell.textLabel?.text = destinations[indexPath.row].name
         } else {
-            cell.textLabel?.text = locations[indexPath.row].name
+            cell.textLabel?.text = locationsToShow[indexPath.row].name
         }
         return cell
     }
@@ -340,6 +361,7 @@ extension ViewController : GMSAutocompleteTableDataSourceDelegate {
     
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didFailAutocompleteWithError error: Error) {
         print("autocomplete error",error)
+        showAlert(title: "sorry..i don't have billing account", message: error.localizedDescription)
     }
     
     
