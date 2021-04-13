@@ -75,13 +75,9 @@ class FirebaseManager: NSObject{
     }
     
     func getClosestDrivers(drivers:[Driver],closestToLocation location:CLLocation) -> [Driver]{
-        var closestDrivers:[Driver] = []
-        
-        
-        closestDrivers = drivers.sorted(by: {
+        drivers.sorted(by: {
             location.distance(from: $0.comparableCoordinate) < location.distance(from: $1.comparableCoordinate)
         })
-        return closestDrivers
     }
     
 }

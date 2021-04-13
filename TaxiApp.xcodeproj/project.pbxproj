@@ -76,16 +76,15 @@
 			isa = PBXGroup;
 			children = (
 				6F5F040B26249E21007027D9 /* App Delegates */,
-				6F5F03D926238750007027D9 /* ViewController.swift */,
-				6F5F03DB26238751007027D9 /* Main.storyboard */,
-				6F5F03DE26238755007027D9 /* Assets.xcassets */,
-				6F5F03E026238755007027D9 /* LaunchScreen.storyboard */,
-				6F5F03E326238755007027D9 /* Info.plist */,
-				6F5F04172624A811007027D9 /* GoogleService-Info.plist */,
-				6F5F040C26249E3D007027D9 /* Constants.swift */,
+				6F5F0436262513A9007027D9 /* Controllers */,
+				6F5F0437262513B5007027D9 /* Views */,
 				6F5F04312624DD9C007027D9 /* Model */,
 				6F5F04302624DD88007027D9 /* Managers */,
 				6F5F042F2624DD5F007027D9 /* Extensions */,
+				6F5F03DE26238755007027D9 /* Assets.xcassets */,
+				6F5F03E326238755007027D9 /* Info.plist */,
+				6F5F04172624A811007027D9 /* GoogleService-Info.plist */,
+				6F5F040C26249E3D007027D9 /* Constants.swift */,
 			);
 			path = TaxiApp;
 			sourceTree = "<group>";
@@ -122,6 +121,23 @@
 				6F5F04332624E5E5007027D9 /* Driver.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6F5F0436262513A9007027D9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F03D926238750007027D9 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		6F5F0437262513B5007027D9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6F5F03E026238755007027D9 /* LaunchScreen.storyboard */,
+				6F5F03DB26238751007027D9 /* Main.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8ADF0E65D87145AE5ADD4868 /* Pods */ = {

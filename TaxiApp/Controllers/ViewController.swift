@@ -105,7 +105,7 @@ class ViewController: UIViewController {
         marker.map = mapView
     }
     
-    private func updateMapView(with location:CLLocationCoordinate2D,zoom:Float? = 9){
+    private func updateMapView(with location:CLLocationCoordinate2D, zoom:Float? = 9){
         let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: zoom!)
         mapView.camera = camera
         addMarkerToMapView(withLocation: location)
@@ -143,7 +143,6 @@ class ViewController: UIViewController {
         firebaseManager.getDriverDocs { [weak self] (drivers, error) in
             guard let self = self ,drivers.count != 0 , error == nil else {return}
             self.drivers = drivers
-            print("hello\(drivers)")
         }
     }
     
@@ -264,7 +263,6 @@ class ViewController: UIViewController {
             showAlert(title: "Oops..sorry!", message: "there is no drivers near you right now, please try again later")
             return
         }
-        
 
         showAlert(title: "Got It!", message: "there is one or more driver near you .. \(nearestDrivers[0].name) , \(nearestDrivers[1].name), \(nearestDrivers[2].name)")
     }
