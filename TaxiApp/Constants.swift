@@ -14,4 +14,5 @@ class Constants {
         static let locationCollectionPath = "Source"
         static let driversCollectionPath = "Drivers"
     }
+    
 }

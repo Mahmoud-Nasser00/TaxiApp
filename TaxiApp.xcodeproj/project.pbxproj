@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F5F03D626238750007027D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F03D526238750007027D9 /* AppDelegate.swift */; };
 		6F5F03D826238750007027D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F03D726238750007027D9 /* SceneDelegate.swift */; };
-		6F5F03DA26238750007027D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F03D926238750007027D9 /* ViewController.swift */; };
+		6F5F03DA26238750007027D9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F03D926238750007027D9 /* MainViewController.swift */; };
 		6F5F03DD26238751007027D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03DB26238751007027D9 /* Main.storyboard */; };
 		6F5F03DF26238755007027D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03DE26238755007027D9 /* Assets.xcassets */; };
 		6F5F03E226238755007027D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F03E026238755007027D9 /* LaunchScreen.storyboard */; };
@@ -19,6 +19,8 @@
 		6F5F04182624A811007027D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F5F04172624A811007027D9 /* GoogleService-Info.plist */; };
 		6F5F041B2624C4CA007027D9 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F041A2624C4CA007027D9 /* UIViewExt.swift */; };
 		6F5F04342624E5E5007027D9 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F04332624E5E5007027D9 /* Driver.swift */; };
+		6F5F043C26264539007027D9 /* ContainersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F043B26264539007027D9 /* ContainersVC.swift */; };
+		6F5F0440262647A0007027D9 /* SideMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5F043F2626479F007027D9 /* SideMenuVC.swift */; };
 		95C062F307CABEA9B32BE950 /* Pods_TaxiApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAD6D043AC7B0AE53E645A7 /* Pods_TaxiApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +30,7 @@
 		6F5F03D226238750007027D9 /* TaxiApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxiApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5F03D526238750007027D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F5F03D726238750007027D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6F5F03D926238750007027D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6F5F03D926238750007027D9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6F5F03DC26238751007027D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6F5F03DE26238755007027D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F5F03E126238755007027D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +41,8 @@
 		6F5F04172624A811007027D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6F5F041A2624C4CA007027D9 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 		6F5F04332624E5E5007027D9 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		6F5F043B26264539007027D9 /* ContainersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainersVC.swift; sourceTree = "<group>"; };
+		6F5F043F2626479F007027D9 /* SideMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuVC.swift; sourceTree = "<group>"; };
 		8373D72D184FF575E73EC881 /* Pods-TaxiApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxiApp.debug.xcconfig"; path = "Target Support Files/Pods-TaxiApp/Pods-TaxiApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,7 +130,9 @@
 		6F5F0436262513A9007027D9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				6F5F03D926238750007027D9 /* ViewController.swift */,
+				6F5F043B26264539007027D9 /* ContainersVC.swift */,
+				6F5F03D926238750007027D9 /* MainViewController.swift */,
+				6F5F043F2626479F007027D9 /* SideMenuVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -134,8 +140,8 @@
 		6F5F0437262513B5007027D9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6F5F03E026238755007027D9 /* LaunchScreen.storyboard */,
 				6F5F03DB26238751007027D9 /* Main.storyboard */,
+				6F5F03E026238755007027D9 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,12 +297,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5F041B2624C4CA007027D9 /* UIViewExt.swift in Sources */,
-				6F5F03DA26238750007027D9 /* ViewController.swift in Sources */,
+				6F5F03DA26238750007027D9 /* MainViewController.swift in Sources */,
 				6F5F03D626238750007027D9 /* AppDelegate.swift in Sources */,
 				6F5F04342624E5E5007027D9 /* Driver.swift in Sources */,
+				6F5F0440262647A0007027D9 /* SideMenuVC.swift in Sources */,
 				6F5F041126249F73007027D9 /* FirebaseManager.swift in Sources */,
 				6F5F04142624A0EA007027D9 /* SourceLocation.swift in Sources */,
 				6F5F03D826238750007027D9 /* SceneDelegate.swift in Sources */,
+				6F5F043C26264539007027D9 /* ContainersVC.swift in Sources */,
 				6F5F040D26249E3D007027D9 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
 
     @IBOutlet weak var cardView:UIView! {
         didSet{
@@ -52,7 +52,6 @@ class ViewController: UIViewController {
     
     private var mapView: GMSMapView!
     private var placesTableViewDataSource: GMSAutocompleteTableDataSource!
-    
     
     private let firebaseManager = FirebaseManager.shared
     private let locationManager = CLLocationManager()
@@ -147,6 +146,8 @@ class ViewController: UIViewController {
     }
     
     //this function not used
+    //this function not used
+    //this function not used
     func getClosestLocation(locations: [CLLocation], closestToLocation location: CLLocation) -> CLLocation? {
         
         if let closestLocation = locations.min(by: { location.distance(from: $0) < location.distance(from: $1) }) {
@@ -158,7 +159,7 @@ class ViewController: UIViewController {
         }
     }
 
-    /// places autocomplete
+    /// search for place with google places autocomplete
     private func setupPlacesTableView(){
         placesTableViewDataSource = GMSAutocompleteTableDataSource()
         placesTableViewDataSource.delegate = self
@@ -174,7 +175,7 @@ class ViewController: UIViewController {
         filter.type = .establishment
         // Specify location bias filter
         if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-              CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            CLLocationManager.authorizationStatus() == .authorizedAlways) {
             currentLoc = locationManager.location!
             filter.locationBias = GMSPlaceRectangularLocationOption(currentLoc.coordinate, currentLoc.coordinate)
             placesTableViewDataSource.autocompleteFilter = filter
@@ -184,7 +185,7 @@ class ViewController: UIViewController {
         locationsTV.dataSource = placesTableViewDataSource
     }
     
-    // get places near to current location by places api
+    // get places near to current location by google places api
     //not used
     private func listLikelyPlaces() {
         destinations.removeAll()
@@ -228,6 +229,10 @@ class ViewController: UIViewController {
         
         if !locationsTV.isHidden {
             sender.isSelected = !sender.isSelected
+        }
+        
+        if locationsTV.isHidden {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sideMenuBtnTapped"), object: nil)
         }
         
         view.endEditing(true)
@@ -275,7 +280,7 @@ class ViewController: UIViewController {
 
     //MARK:- Extensions
 
-extension ViewController: CLLocationManagerDelegate {
+extension MainViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -291,7 +296,7 @@ extension ViewController: CLLocationManagerDelegate {
     }
 }
 
-extension ViewController :UITextFieldDelegate {
+extension MainViewController :UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         menuBtn.isSelected = true
@@ -316,7 +321,7 @@ extension ViewController :UITextFieldDelegate {
     
 }
     //MARK: TV Extensions
-extension ViewController : UITableViewDelegate {
+extension MainViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedLocation = locationsToShow[indexPath.row]
@@ -327,7 +332,7 @@ extension ViewController : UITableViewDelegate {
     
 }
 
-extension ViewController : UITableViewDataSource {
+extension MainViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isDestinationTFActive ? destinations.count: locationsToShow.count
@@ -345,7 +350,7 @@ extension ViewController : UITableViewDataSource {
     
 }
 
-extension ViewController : GMSAutocompleteTableDataSourceDelegate {
+extension MainViewController : GMSAutocompleteTableDataSourceDelegate {
     func tableDataSource(_ tableDataSource: GMSAutocompleteTableDataSource, didAutocompleteWith place: GMSPlace) {
         
     }
