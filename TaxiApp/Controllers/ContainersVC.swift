@@ -8,8 +8,6 @@
 import UIKit
 
 class ContainersVC: UIViewController {
-
-    @IBOutlet weak var sideMenuTrailing: NSLayoutConstraint!
     
     @IBOutlet weak var MainVCCenterConst: NSLayoutConstraint!
     
@@ -26,11 +24,11 @@ class ContainersVC: UIViewController {
         
         UIView.animate(withDuration: 0.3) { [weak self] in
             if self?.MainVCCenterConst.constant == 0 {
-                self?.MainVCCenterConst.constant = 150
-                self?.mainVCTopConst.constant = 200
+                self?.MainVCCenterConst.constant = 170
+//                self?.mainVCTopConst.constant = 200
             } else {
                 self?.MainVCCenterConst.constant = 0
-                self?.mainVCTopConst.constant = 0
+//                self?.mainVCTopConst.constant = 0
             }
             
             self?.view.layoutIfNeeded()

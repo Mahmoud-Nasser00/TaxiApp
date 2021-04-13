@@ -171,7 +171,6 @@
                     <connections>
                         <outlet property="MainVCCenterConst" destination="igR-ZC-TUL" id="Vwr-fm-Z75"/>
                         <outlet property="mainVCTopConst" destination="o3O-W9-04Y" id="Vho-oM-396"/>
-                        <outlet property="sideMenuTrailing" destination="NSq-pX-gjR" id="eSu-gy-rDe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8G-7D-9dF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -238,7 +237,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eh2-cl-mxo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1146" y="-127"/>
+            <point key="canvasLocation" x="-1733" y="-127"/>
         </scene>
     </scenes>
     <resources>
