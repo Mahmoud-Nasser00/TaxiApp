@@ -35,7 +35,7 @@ class ContainersVC: UIViewController {
             
         }
         
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("sideMenuBtnTapped"), object: nil)
+      
     }
 
     /*

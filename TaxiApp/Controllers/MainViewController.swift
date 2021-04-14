@@ -233,6 +233,8 @@ class MainViewController: UIViewController {
         
         if locationsTV.isHidden {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "sideMenuBtnTapped"), object: nil)
+            
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name("sideMenuBtnTapped"), object: nil)
         }
         
         view.endEditing(true)
